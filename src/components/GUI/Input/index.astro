@@ -1,0 +1,90 @@
+---
+import { Icon } from "astro-icon/components";
+import type { ValidationRule, ValidationOptions } from './validator';
+
+export interface Props {
+  type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
+  name: string;
+  label?: string;
+  icon?: string;
+  placeholder?: string;
+  required?: boolean;
+  value?: string;
+  class?: string;
+  validationRule?: ValidationRule;
+  validationOptions?: Omit<ValidationOptions, 'rule' | 'customMessage'>;
+  customMessages?: {
+    error?: string;
+    success?: string;
+  };
+  validateOnInput?: boolean;
+  [key: string]: any;
+}
+
+import './styles.css';
+
+const {
+  type = 'text',
+  icon,
+  name,
+  label,
+  placeholder,
+  required = false,
+  value,
+  class: classes,
+  validationRule,
+  validationOptions,
+  customMessages,
+  validateOnInput = true,
+  ...inputProps
+} = Astro.props;
+
+
+const id = `${name}-input-${Date.now().toString(36)}-${Math.random().toString(36).substr(2, 5)}`;
+
+---
+
+<div id={`${id}-wrapper`} class:list={["input-group", classes]}
+  data-input-id = {id}
+  data-validation-rule={validationRule}
+  data-validation-options={JSON.stringify(validationOptions)}
+  data-custom-messages={JSON.stringify(customMessages)}
+>
+  {label && <label for={id}>{label}</label>}
+  <div id={`${id}-input`} class="input">
+    {icon && (
+      <Icon name={icon} class:list={["icon"]} />
+    )}
+    <input
+      {...inputProps}
+      type={type}
+      id={id}
+      name={name}
+      placeholder={placeholder}
+      required={required}
+      value={value}
+      class="input__field"
+
+    />
+  </div>
+  <div id={`${id}-messages`} class="input-messages"></div>
+</div>
+
+<script>
+  import type { ValidationRule } from './validator';
+
+  import('./inputValidation').then(({ setInputValidation }) => {
+    const containers: NodeListOf<HTMLElement> = document.querySelectorAll('[data-input-id]');
+
+    containers.forEach((container: HTMLElement) => {
+      const inputId = container.dataset?.inputId as string;
+      const validationRule = (container.dataset?.validationRule as ValidationRule) || null;
+      const validationOptions = JSON.parse(container.dataset?.validationOptions || '{}');
+      const customMessages = JSON.parse(container.dataset?.customMessages || '{}');
+
+      if (validationRule || validationOptions || customMessages) {
+        setInputValidation(inputId, validationRule, validationOptions, customMessages);
+      }
+    });
+  });
+</script>

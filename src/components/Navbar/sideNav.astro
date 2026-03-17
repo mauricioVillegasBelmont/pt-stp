@@ -1,0 +1,17 @@
+---
+  import { Icon } from "astro-icon/components";
+---
+
+<div aria-label="mobile navigation" class="sideNav lg:hiden" sidebarjs>
+  <div class="sideNav__header">
+    <div sidebarjs-toggle>
+      <Icon name="ic:round-close" class="nav__icon"/>
+    </div>
+  </div>
+  <nav class="sideNav__wrapper">
+    <slot />
+  </nav>
+</div>
+<script>
+  import './Navbar'
+</script>

@@ -1,0 +1,26 @@
+@reference "@styles/global.css";
+
+.list {
+	@apply list-none p-0 m-0;
+
+	& li {
+		@apply py-2 gap-2;
+	}
+
+	& li.bullet-right,
+	& li.bullet-left {
+		@apply flex items-center;
+	}
+
+	& a {
+		@apply no-underline;
+	}
+
+	& a:hover {
+		@apply underline;
+	}
+
+	& .list_icon {
+		@apply inline-flex items-center justify-center p-1 aspect-square rounded-full;
+	}
+}

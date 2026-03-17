@@ -1,0 +1,26 @@
+---
+import './styles.css';
+
+export interface Props {
+  type?: 'button' | 'submit' | 'reset';
+  variant?: 'primary' | 'secondary' | 'outline';
+  disabled?: boolean;
+  classes?: string;
+  href?: string;
+}
+
+const { type = 'button', variant = 'primary',  disabled = false, href,classes, ...rest } = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+
+{
+  href ? (
+    <Tag href={href} class:list={['btn', `btn-${variant}`, `${classes ? classes : ''}`]} {...rest}>
+      <slot />
+    </Tag>
+  ) : (
+    <Tag type={type} disabled={disabled} class:list={['btn', `btn-${variant}`, `${classes ? classes : ''}`]} {...rest}>
+      <slot />
+    </Tag>
+  )
+}

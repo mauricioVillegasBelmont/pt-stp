@@ -1,0 +1,42 @@
+@reference "../../styles/global.css";
+.header {
+	@apply sticky top-0 z-50 bg-white/95 py-4 px-6 md:px-8 border-b border-gray-200 shadow;
+
+	.header__btn {
+		@apply text-sm md:text-base;
+	}
+	.nav {
+		@apply flex justify-between items-center mx-auto;
+	}
+	.nav__links {
+		@apply hidden md:flex gap-8 mx-auto;
+		a {
+			@apply no-underline hover:underline;
+		}
+	}
+	.logo {
+		@apply font-bold text-xl no-underline;
+		img {
+			@apply h-8 w-auto;
+		}
+	}
+}
+
+.sideNav {
+	.sideNav__header {
+		@apply flex justify-end px-8 py-12;
+	}
+	.sideNav__wrapper {
+		@apply px-8 pb-8;
+	}
+}
+.nav__icon {
+	@apply text-3xl cursor-pointer;
+}
+.sideNav__links {
+	@apply flex gap-6 list-none m-0 p-0;
+
+	a {
+		@apply text-2xl font-bold no-underline hover:underline;
+	}
+}

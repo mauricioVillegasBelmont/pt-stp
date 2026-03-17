@@ -1,0 +1,19 @@
+---
+import './styles.css';
+
+export interface Props {
+  title?: string;
+  href?: string;
+  classes?: string;
+  [key: string]: any;
+}
+
+const { title, href, classes, ...ElementProps } = Astro.props;
+const Tag = href ? 'a' : 'article';
+---
+
+<Tag {...ElementProps} class:list={['card', `${classes ? classes : ''}`]} href={href} aria-label={title}>
+  <slot name="icon" />
+  {title && <h3 class="card__title">{title}</h3>}
+  <slot />
+</Tag>

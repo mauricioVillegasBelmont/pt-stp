@@ -1,0 +1,40 @@
+---
+interface ContactPoint {
+	"@type"?: string;
+	telephone?: string;
+	contactType?: string;
+	areaServed?: string;
+	availableLanguage?: string[];
+}
+
+interface Props {
+	siteName: string;
+	description: string;
+	url: string;
+	logo?: string;
+	contactPoint?: ContactPoint;
+	type?: string;
+}
+
+const {
+	siteName,
+	description,
+	url,
+	logo = `${Astro.site}/main_logo.svg`,
+	contactPoint,
+	type = "Organization",
+} = Astro.props;
+
+const schemaData = {
+	"@context": "https://schema.org",
+	"@type": type,
+	"name": siteName,
+	"description": description,
+	"url": url,
+	"logo": logo,
+	...(contactPoint && { contactPoint }),
+};
+---
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />

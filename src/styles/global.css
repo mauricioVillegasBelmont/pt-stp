@@ -1,0 +1,44 @@
+@import "tailwindcss";
+@import "./fonts.css";
+@import "./theme.css";
+
+@layer base {
+	body {
+		line-height: var(--golden-ratio);
+		font-family: var(--font-inter);
+		font-feature-settings:
+			"cv02", "cv03", "cv04", "cv11"; /* Ajustes opcionales de Inter */
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+		overflow-x: hidden;
+	}
+	.container {
+		max-width: 1080px !important;
+	}
+	[sidebarjs-backdrop] {
+		backdrop-filter: blur(10px);
+	}
+}
+
+@utility text-display {
+	@apply text-[40px] lg:text-[60px] tracking-[-0.94px] font-[700];
+}
+@utility text-h1 {
+	@apply text-[36px] lg:text-[60px] tracking-[-0.94px] font-[700];
+}
+@utility text-h2 {
+	@apply text-[32px] lg:text-[48px] tracking-[-0.48px] font-[700];
+}
+@utility text-h3 {
+	@apply text-[30px] lg:text-[36px] tracking-[-0.48px] font-[700];
+}
+@utility text-h4 {
+	@apply text-[26px] lg:text-[30px] tracking-[-0.4px] font-[600];
+}
+@utility text-h5 {
+	@apply text-[24px] lg:text-[24px] tracking-[-0.07px] font-[600];
+}
+@utility text-h6 {
+	@apply text-[20px] lg:text-[20px] tracking-[-0.45px] font-[600];
+}

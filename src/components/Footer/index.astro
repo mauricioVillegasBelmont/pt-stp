@@ -1,0 +1,74 @@
+---
+import type { SvgComponent } from 'astro/types';
+
+export interface Link {
+  href: string;
+  label: string;
+}
+export interface SocialMediaLink {
+  href: string;
+  icon: string;
+}
+export interface Props {
+  logo: SvgComponent & ImageMetadata;
+  logoAlt?: string;
+  classes?: string;
+  policyLinks: Array<Link>;
+  productLinks: Array<Link>;
+  aboutLinks: Array<Link>;
+  socialMediaLinks: Array<SocialMediaLink>;
+}
+
+import { Image } from 'astro:assets';
+
+import Link from '@components/GUI/Link/index.astro';
+import './styles.css';
+
+const { logo,logoAlt = 'logo', classes, productLinks, aboutLinks, policyLinks, socialMediaLinks } = Astro.props;
+---
+
+<footer class:list={["footer", `${classes ? classes : ''}`]}>
+  <div class="container footer__head">
+    <div class="footer__information">
+      <a href="/" class="footer__logo">
+        <Image src={logo} alt={logoAlt} />
+      </a>
+      <slot name="information" />
+    </div>
+    <div class="footer__head__links footer__products">
+      <h3 class="text-lg font-semibold text-white">Producto</h3>
+      <menu>
+        {productLinks.map((link) => (
+          <li><Link href={link.href} label={link.label}  /></li>
+        ))}
+      </menu>
+    </div>
+    <div class="footer__head__links footer__enteprice">
+      <h3 class="text-lg font-semibold text-white">Empresa</h3>
+      <menu>
+        {aboutLinks.map((link) => (
+          <li><Link href={link.href} label={link.label} /></li>
+        ))}
+      </menu>
+    </div>
+  </div>
+  <hr class="container mx-auto my-8 border-b border-[#1E2939]">
+  <div class="container mx-auto text-center">
+    <nav class="flex flex-col lg:flex-row justify-between mb-8 gap-8">
+      <menu class="nav__policies">
+        {policyLinks.map((link) => (
+          <li><Link href={link.href} label={link.label} /></li>
+        ))}
+      </menu>
+      <menu class="nav__sm">
+        {socialMediaLinks.map((link) => (
+          <li><Link href={link.href} icon={{name: link.icon, size: 18}} /></li>
+        ))}
+      </menu>
+    </nav>
+    <div class="flex flex-col gap-4 py-4">
+      <p class="text-sm">© {new Date().getFullYear()} Sistema de Transferencias y Pagos, S.A. de C.V. Todos los derechos reservados.</p>
+      <p class="text-sm">Institución regulada por la CNBV y Banco de México</p>
+    </div>
+  </div>
+</footer>

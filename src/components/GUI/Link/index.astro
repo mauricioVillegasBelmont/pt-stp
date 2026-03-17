@@ -1,0 +1,62 @@
+---
+// library imports
+import { Icon } from "astro-icon/components";
+
+interface Props {
+	label?: string;
+	href: string;
+	classes?: string;
+	rel?: "external" | "author";
+	icon?: {
+		name: string;
+		size: number;
+		classes?: string;
+	};
+}
+
+const { label, href, icon, classes, rel, ...rest } = Astro.props as Props;
+const path = import.meta.env.BASE_URL??'';
+
+
+const removeTrailingSlash = (str: string): string => str.replace(/\/$/, "");
+
+// Determine if link is external
+const isExternal = rel === 'external' ||
+  href.startsWith('http://') ||
+  href.startsWith('https://') ||
+  href.startsWith('mailto:');
+
+const getNormalizedHref = (href:string):string =>{
+	return removeTrailingSlash(`${!isExternal ? path : ''}${href}`)
+}
+
+
+// Determine if this is the current page (for internal links)
+const currentPath = Astro.url.pathname;
+const normalizedPath = removeTrailingSlash(currentPath);
+const normalizedHref = getNormalizedHref(href);
+const isCurrentPage = !isExternal && (
+  normalizedHref === normalizedPath ||
+  (normalizedHref === '' && normalizedPath === '')
+);
+---
+
+<a
+	href={`${!isExternal ? path : ''}${href}`}
+	class:list={['link',classes ?? "", isCurrentPage ? "disabled" : ""]}
+	aria-current={isCurrentPage ? "page" : undefined}
+	target={isExternal ? "_blank" : "_self"}
+	rel={isExternal ? "noreferrer noopener" : undefined}
+	{...rest}>
+	{
+		icon && (
+			<Icon
+				name={icon.name}
+				width={icon.size}
+				height={icon.size}
+				class:list={["block", icon.classes]}
+			/>
+		)
+	}
+	{label && <span>{label}</span>}
+</a>

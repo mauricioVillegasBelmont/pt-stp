@@ -1,0 +1,26 @@
+---
+import { Icon } from "astro-icon/components";
+
+import './styles.css';
+
+export interface Props {
+  action?: string;
+  method?: 'get' | 'post';
+  submitMesage?: string;
+  [key: string]: any;
+}
+
+import Button from '@components/GUI/Button/index.astro';
+
+const { action = '/', method = 'post', submitMesage = 'Enviar', ...ElementProps} = Astro.props;
+---
+
+<form {...ElementProps} class="form" action={action} method={method}>
+  <div class="form__content">
+    <slot />
+    <Button type="submit">{submitMesage} <Icon name="send" class="ml-3" /></Button>
+  </div>
+  <div class="form__footer pb-4">
+    <p class="text-xs text-neutral-gray-500 text-center">Al enviar este formulario, aceptas nuestros términos de servicio y política de privacidad.</p>
+  </div>
+</form>

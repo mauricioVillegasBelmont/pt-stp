@@ -1,0 +1,27 @@
+---
+interface Props {
+	url: string;
+	title: string;
+	description: string;
+	image?: string;
+	locale?: string;
+	type?: string;
+}
+
+const {
+	url,
+	title,
+	description,
+	image = `${Astro.site}/og-image.jpg`,
+	locale = "es_MX",
+	type = "website",
+} = Astro.props;
+---
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:locale" content={locale} />

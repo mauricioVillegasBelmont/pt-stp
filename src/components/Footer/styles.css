@@ -1,0 +1,39 @@
+@reference "@styles/global.css";
+
+.footer {
+	@apply py-12 lg:py-12 px-8 bg-footer text-neutral-gray-400;
+	.footer__head {
+		@apply mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6;
+	}
+	.link {
+		@apply no-underline hover:underline;
+	}
+	.footer__logo {
+		@apply block mb-6;
+	}
+	.footer__information {
+		@apply col-span-2;
+	}
+	.footer__head__links {
+		@apply col-span-1;
+		h3 {
+			@apply block mt-8 lg:mt-0 mb-6;
+		}
+		ul,
+		menu {
+			@apply flex flex-col gap-3;
+		}
+	}
+
+	.nav__sm {
+		@apply flex flex-row justify-around gap-4;
+		a {
+			@apply block bg-[#1E2939] p-3 rounded-xl hover:bg-primary-blue-950 text-white;
+		}
+		/* a {
+		} */
+	}
+	.nav__policies {
+		@apply flex flex-col lg:flex-row items-center gap-4 lg:gap-8;
+	}
+}

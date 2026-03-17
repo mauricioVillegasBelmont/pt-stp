@@ -1,0 +1,43 @@
+---
+import { Icon } from "astro-icon/components";
+import './styles.css';
+
+
+export interface ListItems {
+  label: string;
+  bullet?: string;
+  bulletPosition?: 'left' | 'right';
+  href?: string;
+  [key: string]: any;
+}
+export interface Props {
+  items: Array<ListItems>;
+  classes?: string;
+  ordered?: boolean;
+}
+
+const { items, ordered = false, classes } = Astro.props;
+const Tag = ordered ? 'ol' : 'ul';
+---
+
+<Tag class:list={["list", `${classes? classes : ''}`]}>
+  {items.map((item) => (
+    <li {...item.ElementProps} class:list={[item.bullet? item.bulletPosition === 'right' ? 'bullet-right' : 'bullet-left':'']}>
+      {item.bullet && item.bulletPosition !== 'right' && (
+        <span class="list_icon">
+          <Icon name={item.bullet} />
+        </span>
+      )}
+      {item.href ? (
+        <a href={item.href}>{item.label}</a>
+      ) : (
+        item.label
+      )}
+      {item.bullet && item.bulletPosition === 'right' && (
+        <span class="list_icon">
+          <Icon name={item.bullet} />
+        </span>
+      )}
+    </li>
+  ))}
+</Tag>

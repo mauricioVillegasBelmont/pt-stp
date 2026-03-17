@@ -1,0 +1,8 @@
+@reference "@styles/global.css";
+
+.form {
+	@apply flex flex-col gap-4 max-w-md p-4 bg-white  text-neutral-gray-500 rounded-2xl shadow-2xl mx-auto;
+	.form__content {
+		@apply flex flex-col gap-4 p-4;
+	}
+}

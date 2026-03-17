@@ -1,0 +1,187 @@
+---
+import Navbar from '@components/Navbar/index.astro';
+import Footer from '@components/Footer/index.astro';
+
+import List from '@components/GUI/List/index.astro';
+
+import SocialOg from '@components/SEO/SocialOg.astro';
+import SocialTwitter from '@components/SEO/SocialTwitter.astro';
+import SiteSchema from '@components/SEO/schemas/SiteSchema.astro';
+
+import logo from '@assets/main_logo.svg';
+import logo_footer from '@assets/main_logo_white.svg';
+
+const canonicalURL: URL = new URL(Astro.url.pathname, Astro.site);
+const { title, description, lang="es", indexing=false } = Astro.props;
+
+import '@styles/global.css';
+---
+
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+
+		<link rel="preload" href="/fonts/Inter-VariableFont.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="/fonts/Inter-Italic-VariableFont.woff2" as="font" type="font/woff2" crossorigin>
+
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL.href}>
+		<meta name="robots" content={ `${indexing ? "index,follow" : "noindex,nofollow"}` } >
+
+		<SocialOg
+			url={canonicalURL.href}
+			title={title}
+			description={description}
+			locale={lang.replace("-", "_")}
+		/>
+		<SocialTwitter
+			url={canonicalURL.href}
+			title={title}
+			description={description}
+		/>
+		<SiteSchema
+			siteName="STP"
+			description={description}
+			url={Astro.site?.href ?? "https://stp.com.mx"}
+			contactPoint={{
+				"@type": "ContactPoint",
+				"telephone": "+52 55 1234 5678",
+				"contactType": "customer service",
+				"areaServed": "MX",
+				"availableLanguage": ["Spanish", "English"]
+			}}
+		/>
+
+		<slot name="head"/>
+		<slot name="GTAG"/>
+	</head>
+	<body>
+		<!-- Navbar -->
+		<Navbar logo={logo} links={[
+			{
+				href: '',
+				label: 'Inicio'
+			},
+			{
+				href: '#',
+				label: 'Beneficios'
+			},
+			{
+				href: '#',
+				label: 'Soluciones'
+			},
+			{
+				href: '#',
+				label: 'Contacto'
+			}
+		]} />
+		<!-- Navbar -->
+		<main class="">
+			<slot />
+		</main>
+		<!-- Footer -->
+		<Footer logo={logo_footer}
+			socialMediaLinks={[
+				{
+					href: '#',
+					icon: 'linkedin'
+				},
+				{
+					href: '#',
+					icon: 'twitter'
+				},
+				{
+					href: '#',
+					icon: 'youtube'
+				}
+			]}
+			aboutLinks={[
+				{
+					href: '#',
+					label: 'Acerca de'
+				},
+				{
+					href: '#',
+					label: 'Blog'
+				},
+				{
+					href: '#',
+					label: 'Carreras'
+				},
+				{
+					href: '#',
+					label: 'Soporte'
+				},
+				{
+					href: '#',
+					label: 'Contacto'
+				}
+			]}
+			productLinks={[
+				{
+					href: '#',
+					label: 'Características'
+				},
+				{
+					href: '#',
+					label: 'Integraciones'
+				},
+				{
+					href: '#',
+					label: 'Documentación'
+				},
+				{
+					href: '#',
+					label: 'Precios'
+				},
+				{
+					href: '#',
+					label: 'API Reference'
+				}
+			]}
+			policyLinks={[
+				{
+					href: '#',
+					label: 'Términos de servicio'
+				},
+				{
+					href: '#',
+					label: 'Política de privacidad'
+				},
+				{
+					href: '#',
+					label: 'Aviso legal'
+				}
+			]}
+		>
+			<div slot="information" class="">
+				<p class="mb-4">Sistema de Transferencias y Pagos. Infraestructura tecnológica de vanguardia para procesar pagos digitales de forma rápida, segura y eficiente.</p>
+				<List items={[
+					{
+						href:"https://share.google/asvz5dn4zIkx3YEBq",
+						label:"Av. Insurgentes Sur 1602, Ciudad de México",
+						bullet:"location"
+					},
+					{
+						href:"tel:+525512345678",
+						label:"+52 55 1234 5678",
+						bullet:"phone"
+					},
+					{
+						href:"mailto:contacto@stp.com.mx",
+						label:"contacto@stp.com.mx",
+						bullet:"location"
+					},
+				]} />
+			</div>
+		</Footer>
+		<!-- Footer -->
+	</body>
+</html>

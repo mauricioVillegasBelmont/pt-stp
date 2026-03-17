@@ -1,0 +1,54 @@
+---
+  import type { SvgComponent } from 'astro/types';
+  export interface Link {
+    href: string;
+    label: string;
+  }
+
+  export interface Props {
+    logo: SvgComponent & ImageMetadata;
+    logoAlt?: string;
+    links?: Array<Link>;
+  }
+
+  import { Image } from 'astro:assets';
+
+  import { Icon } from "astro-icon/components";
+  import Button from '@components/GUI/Button/index.astro';
+  import Link from '@components/GUI/Link/index.astro';
+
+  const {  logo,logoAlt = 'logo', links = [] } = Astro.props;
+
+  import './styles.css';
+  import SideNav from '@components/Navbar/sideNav.astro';
+---
+<header class="header">
+  <nav aria-label="Main navigation" class="container nav">
+    <a href="/" class="logo">
+      <Image src={logo} alt={logoAlt} />
+    </a>
+    <ul class="nav__links">
+      {links.map((link) => (
+        <li><Link href={link.href} label={link.label} /></li>
+      ))}
+    </ul>
+    <div class="">
+      <Button classes="header__btn">
+        Solicitar información
+      </Button>
+    </div>
+    <div class="icon hamburger-icon md:hidden">
+      <div sidebarjs-toggle>
+        <Icon name="streamline-ultimate:navigation-menu-bold" class="nav__icon" />
+      </div>
+    </div>
+  </nav>
+</header>
+
+<SideNav>
+  <ul class="sideNav__links flex-col">
+    {links.map((link) => (
+      <li><Link href={link.href} label={link.label} /></li>
+    ))}
+  </ul>
+</SideNav>

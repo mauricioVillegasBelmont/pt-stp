@@ -12,6 +12,27 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.0.4"
+    "@astrojs/react": "^5.0.0",
+    "@iconify-json/ic": "^1.2.4",
+    "@iconify-json/streamline-ultimate": "^1.2.2",
+    "@tailwindcss/vite": "^4.2.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^6.0.4",
+    "astro-icon": "^1.1.5",
+    "gsap": "^3.14.2",
+    "in-view": "^0.6.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "scrollmagic": "^2.0.9",
+    "scrollmagic-plugin-gsap": "^1.0.4",
+    "sharp": "^0.34.5",
+    "sidebarjs": "^10.0.0",
+    "tailwindcss": "^4.2.1",
+    "validator": "^13.15.26"
+  },
+  "devDependencies": {
+    "@types/gsap": "^3.0.0",
+    "@types/scrollmagic": "^2.0.8"
   }
 }

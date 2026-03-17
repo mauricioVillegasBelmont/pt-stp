@@ -1,17 +1,283 @@
 ---
+import { Image } from 'astro:assets';
+import { Icon } from "astro-icon/components";
+
+import "./index.css"
+
+import Layout from '@layouts/Layout/index.astro';
+
+import Hero from '@components/Hero/index.astro';
+import Form from '@components/Form/index.astro';
+
+
+import Button from '@components/GUI/Button/index.astro';
+import Badge from '@components/GUI/Badge/index.astro';
+import Card from '@components/GUI/Card/index.astro';
+import EmptyCard from '@components/GUI/Card/EmptyCard.astro';
+import List from '@components/GUI/List/index.astro';
+import Input from '@components/GUI/Input/index.astro';
+import CountUp from '@components/GUI/CountUp/CountUp';
+
+
+const title = 'STP | La manera de hacer pagos digitales';
+const description ="Tecnología de última generación que impulsa tu negocio hacia el futuro de los pagos digitales"
+
+import heroImage from '@assets/hero__home.jpg';
+import sectionImage from '@assets/section_image.jpg';
 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title={title} description={description} indexing={false}>
+	<!-- Main -->
+	<Hero tag="header" classes="bg-linear-to-br from-[#F9FAFB] to-[#EFF6FF]">
+		<div slot="image" class="hero__imageWrapper" data-parallax-parent='heroImage'>
+			<Image src={heroImage} alt={'digital payments'} class="hero__image"
+			data-parallax-id="heroImage"
+			/>
+		</div>
+
+		<div slot="content" class="flex flex-col gap-4 lg:gap-6 lg:justify-center lg:h-full lg:px-4" data-parallax-parent="hero-title">
+			<Badge label="Infraestructura de pagos digitales" type="pill" variant='info' size="md" icon="text-bullet" classes="mr-auto"/>
+			<h1 class="text-h1 lg:text-left leading-[1.5]" data-parallax-id="hero-title">Transformamos la manera de hacer <span class="text-blue-600">pagos digitales</span></h1>
+
+			<p class="text-h6 lg:text-left font-[400]">Conectamos instituciones financieras con tecnología de última generación para procesar transferencias instantáneas, seguras y eficientes.</p>
+
+			<div class="flex flex-col lg:flex-row gap-4 justify-start" >
+				<Button variant='primary' href='#'>Comenzar ahora <Icon name="arrow" class="ml-3" /></Button>
+				<Button variant='secondary' href='#'><Icon name="play" class="mr-3" /> Ver demostración</Button>
+			</div>
+			<hr class="border-b border-neutral-gray-200">
+			<div class="flex flex-col lg:flex-row gap-4 justify-around" >
+
+				<div class="bullets">
+					<span class="block text-h4 font-bold">
+						<CountUp start={0} end={99.9} duration={1500} delay={1000} client:only="react" />%
+					</span>
+					<span class="block text-sm">Disponibilidad</span>
+				</div>
+				<div class="bullets">
+					<span class="block text-h4 font-bold">
+						&lt;<CountUp start={0} end={2} duration={1500} delay={1000} client:only="react" />s
+					</span>
+					<span class="block text-sm">Tiempo de proceso</span>
+				</div>
+				<div class="bullets">
+					<span class="block text-h4 font-bold">
+						<CountUp start={0} end={24} duration={1500} delay={1000} client:only="react" />
+						/<CountUp start={0} end={7} duration={1500}  delay={1000} client:only="react" />
+					</span>
+					<span class="block text-sm">Soporte activo</span>
+				</div>
+
+			</div>
+		</div>
+
+	</Hero>
+	<!-- sección de beneficios-->
+	<section class="section">
+		<div class="container mx-auto flex flex-col gap-4">
+
+			<h2 class="text-h3 text-center" >¿Por qué elegir STP?</h2>
+			<p class="text-lg text-center">Tecnología de última generación que impulsa tu negocio hacia el futuro de los pagos digitales</p>
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10 my-12" 		data-parallax-parent="cardWrapper"
+			>
+				<Card title="Velocidad sin precedentes" data-parallax-id="card1" >
+					<div slot="icon" class="card__icon--wrapper text-primary-blue-600 text-[32px]">
+						<Icon name="zap" />
+					</div>
+					<p>Procesa transferencias en menos de 2 segundos con nuestra infraestructura optimizada. Opera 24/7 sin interrupciones.</p>
+				</Card>
+				<Card  title="Seguridad garantizada" data-parallax-id="card2" >
+					<div slot="icon" class="card__icon--wrapper text-secondary-teal-500 text-[32px]">
+						<Icon name="shield" />
+					</div>
+					<p>Cumplimiento total con estándares PCI-DSS y cifrado de extremo a extremo. Protección avanzada contra fraude.</p>
+				</Card>
+				<Card  title="Integración simplificada" data-parallax-id="card3" >
+					<div slot="icon" class="card__icon--wrapper text-[#4F39F6] text-[32px]">
+						<Icon name="workflow" />
+					</div>
+					<p>API REST moderna con documentación completa. Conecta tu sistema en días, no meses. SDKs disponibles en múltiples lenguajes.</p>
+				</Card>
+			</div>
+
+			<div class="w-full lg:w lg:max-w-[750px] mx-auto">
+
+				<EmptyCard classes='p-4 md:p-6 bg-linear-to-r from-[#EFF6FF] to-[#F0FDFA]'>
+					<div class="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr] gap-4 text-center">
+						<div class="bullets px-8">
+							<span class="block text-h4 font-bold text-primary-blue-600">
+								+<CountUp start={0} end={500} duration={2000} delay={1000} client:only="react" />
+							</span>
+							<span class="block text-sm">Instituciones conectadas</span>
+						</div>
+						<div class="divider"></div>
+						<div class="bullets px-8">
+							<span class="block text-h4 font-bold text-secondary-teal-500">$<CountUp start={0} end={10} duration={2000} delay={1000} client:only="react" />B+</span>
+							<span class="block text-sm">Procesados mensualmente</span>
+						</div>
+						<div class="divider"></div>
+						<div class="bullets px-8">
+							<span class="block text-h4 font-bold text-[#4F39F6]">ISO 27001</span>
+							<span class="block text-sm">Certificación de seguridad</span>
+						</div>
+					</div>
+				</EmptyCard>
+
+			</div>
+		</div>
+	</section>
+	<!-- sección de soluciones -->
+	<section class="section">
+		<div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10" data-parallax-parent="infra">
+			<div class="flex items-center" >
+				<Image src={sectionImage} alt={'digital Infrastructure'} class="lg:max-w-[500px] mx-auto rounded-[16px] overflow-hidden" data-parallax-id="infra"  />
+			</div>
+			<div class="flex flex-col gap-6">
+				<Badge label="Infraestructura de pagos digitales" type="pill" variant='success' size="md" classes="mr-auto"/>
+				<h2 class="text-h3" data-parallax-id="infra-title" >Infraestructura robusta para tu operación financiera</h2>
+				<p>Nuestra plataforma ofrece todas las herramientas necesarias para gestionar, monitorear y optimizar tus operaciones de pago. Desde la integración inicial hasta el soporte continuo, te acompañamos en cada paso del proceso.</p>
+
+				<List items={[
+					{
+						bullet:"check",
+						label:"API RESTful con documentación completa y actualizada"
+					},
+					{
+						bullet:"check",
+						label:"Webhooks en tiempo real para notificaciones instantáneas"
+					},
+					{
+						bullet:"check",
+						label:"Panel de control avanzado con analytics y reportes"
+					},
+					{
+						bullet:"check",
+						label:"Soporte técnico especializado disponible 24/7"
+					}
+				]} classes='list__infrastructure my-8'/>
+				<div class="flex">
+					<Button variant='primary' href='#'>Explorar la plataforma <Icon name="arrow" class="ml-3" /></Button>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<hr class="container mx-auto border-b border-neutral-gray-200">
+	<!-- sección Tecnologías compatibles -->
+	<section class="section">
+		<div class="container mx-auto flex flex-col gap-4">
+			<h2 class="text-h6 text-center font-bold" >Tecnologías compatibles</h2>
+			<p class="text-center mb-4">Integración con los principales estándares de la industria</p>
+			<div class="container max-w-[60rem] mx-auto">
+				<ul class="grid grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8 text-center text-neutral-gray-700 font-semibold" data-parallax-parent="badges">
+					<li>
+						<Badge label="REST API" type="rounded" variant='info' size="md" icon="check" classes="mr-auto" data-parallax-id="badge0"/>
+					</li>
+					<li>
+						<Badge label="SPEI" type="rounded" variant='info' size="md" icon="check" classes="mr-auto" data-parallax-id="badge1"/>
+					</li>
+					<li>
+						<Badge label="ISO 20022" type="rounded" variant='info' size="md" icon="check" classes="mr-auto" data-parallax-id="badge2"/>
+					</li>
+					<li>
+						<Badge label="OAuth 2.0" type="rounded" variant='info' size="md" icon="check" classes="mr-auto" data-parallax-id="badge3"/>
+					</li>
+					<li>
+						<Badge label="Webhook" type="rounded" variant='info' size="md" icon="check" classes="mr-auto" data-parallax-id="badge4"/>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+	</section>
+	<!-- sección Contacto-->
+	<section class="section bg-linear-to-br from-[#155DFC] to-[#193CB8] text-white" data-parallax-parent="form">
+		<div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+			<div class="flex flex-col gap-4 lg:justify-center lg:h-full">
+				<h2 class="text-h3" data-parallax-id="form-title" >¿Listo para transformar tus pagos digitales?</h2>
+				<p class="text-lg">Completa el formulario y nuestro equipo de especialistas se pondrá en contacto contigo para una demostración personalizada de nuestra plataforma.</p>
+				<List items={[
+				{
+					bullet:"tick",
+					label:"Respuesta en menos de 24 horas"
+				},
+				{
+					bullet:"tick",
+					label:"Demo personalizada sin compromiso"
+				},
+				{
+					bullet:"tick",
+					label:"Asesoría técnica especializada"
+				}
+			]} classes='list__infrastructure my-8'/>
+			</div>
+			<div class="">
+				<Form submitMesage='Enviar solicitud' data-parallax-id="form">
+					<Input
+						label="Nombre completo *"
+						name="nombre"
+						icon='user'
+						placeholder='Juan Pérez'
+						required={true}
+						validationRule="alpha"
+						validationOptions={{
+							minLength: 3,
+							maxLength: 100
+						}}
+						customMessages={{
+							error: "Ingresa un nombre válido (solo letras)",
+							success: "Nombre válido"
+						}}
+					/>
+					<Input
+						label="Empresa *"
+						name="empresa"
+						icon='building'
+						placeholder='Tu Empresa S.A.'
+						required={true}
+						validationRule="alphanumeric"
+						validationOptions={{
+							minLength: 2,
+							maxLength: 150
+						}}
+						customMessages={{
+							error: "Ingresa un nombre de empresa válido",
+							success: "Empresa válida"
+						}}
+					/>
+					<Input
+						label="Correo electrónico *"
+						name="email"
+						type='email'
+						icon="mail"
+						placeholder='juan@empresa.com'
+						required={true}
+						validationRule="email"
+						customMessages={{
+							error: "Ingresa un correo electrónico válido",
+							success: "Correo electrónico válido"
+						}}
+					/>
+					<Input
+						label="Teléfono *"
+						name="telefono"
+						type='tel'
+						icon='phone'
+						placeholder='+52 55 1234 5678'
+						required={true}
+						validationRule="mobilePhone"
+						customMessages={{
+							error: "Ingresa un número de teléfono válido (ej. +52 55 1234 5678)",
+							success: "Teléfono válido"
+						}}
+					/>
+				</Form>
+			</div>
+		</div>
+	</section>
+	<!-- Main -->
+</Layout>
+
+<script src="@scripts/pages/index.ts"></script>
