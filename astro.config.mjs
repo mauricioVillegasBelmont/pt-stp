@@ -2,14 +2,11 @@ import { defineConfig, envField } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 import icon from "astro-icon";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 // https://astro.build/config
 export default defineConfig({
-	site: process.env.PUBLIC_SITE_URL || "http://localhost:4321",
-	base: process.env.PUBLIC_SITE_BASE || "",
+	site: "https://mauriciovillegasbelmont.github.io",
+	base: "/pt-stp",
 	env: {
 		schema: {
 			PUBLIC_SITE_URL: envField.string({
