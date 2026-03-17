@@ -24,7 +24,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9 # o la versión que uses localmente (9.15.4 según tu error)
+          version: "9.15.4"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
