@@ -12,7 +12,8 @@
 			"@layouts/*": ["./src/layouts/*"],
 			"@styles/*": ["./src/styles/*"],
 			"@utils/*": ["./src/utils/*"],
-			"@scripts/*": ["./src/scripts/*"]
+			"@scripts/*": ["./src/scripts/*"],
+			"@fonts/*": ["./public/fonts/*"]
 		}
 	}
 }

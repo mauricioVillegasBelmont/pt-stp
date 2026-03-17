@@ -5,6 +5,7 @@
 This is a **landing page** for STP (Sistema de Transferencias y Pagos), a digital payments infrastructure platform. The site showcases STP's services for connecting financial institutions with technology for instant, secure, and efficient payment processing.
 
 **Tech Stack:**
+
 - **Framework:** Astro 6.x (SSG/SSR hybrid)
 - **Styling:** Tailwind CSS 4.x with custom theme
 - **UI Components:** React 19.x (selective hydration via `client:only`)
@@ -44,14 +45,14 @@ This is a **landing page** for STP (Sistema de Transferencias y Pagos), a digita
 
 All commands run from project root:
 
-| Command | Description |
-|---------|-------------|
-| `pnpm install` | Install dependencies |
-| `pnpm dev` | Start local dev server at `localhost:4321` |
-| `pnpm build` | Build production site to `./dist/` |
-| `pnpm preview` | Preview production build locally |
-| `pnpm astro add <pkg>` | Add Astro integration |
-| `pnpm astro check` | Type check the project |
+| Command                | Description                                |
+| ---------------------- | ------------------------------------------ |
+| `pnpm install`         | Install dependencies                       |
+| `pnpm dev`             | Start local dev server at `localhost:4321` |
+| `pnpm build`           | Build production site to `./dist/`         |
+| `pnpm preview`         | Preview production build locally           |
+| `pnpm astro add <pkg>` | Add Astro integration                      |
+| `pnpm astro check`     | Type check the project                     |
 
 ## Development Conventions
 
@@ -59,13 +60,13 @@ All commands run from project root:
 
 The following aliases are configured in `tsconfig.json` and `astro.config.mjs`:
 
-| Alias | Maps To |
-|-------|---------|
-| `@pages/*` | `./src/pages/*` |
-| `@assets/*` | `./src/assets/*` |
+| Alias           | Maps To              |
+| --------------- | -------------------- |
+| `@pages/*`      | `./src/pages/*`      |
+| `@assets/*`     | `./src/assets/*`     |
 | `@components/*` | `./src/components/*` |
-| `@layouts/*` | `./src/layouts/*` |
-| `@styles/*` | `./src/styles/*` |
+| `@layouts/*`    | `./src/layouts/*`    |
+| `@styles/*`     | `./src/styles/*`     |
 
 ### Component Patterns
 
@@ -88,6 +89,7 @@ The following aliases are configured in `tsconfig.json` and `astro.config.mjs`:
 Configured via `astro.config.mjs` env schema:
 
 - `SITE_URL` (public, server context) - Defaults to `http://localhost:4321`
+- `PUBLIC_SITE_BASE` (public, client context) - Base path used for deployment (e.g., `/landing` or `/`)
 
 ### Icon Usage
 

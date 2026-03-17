@@ -1,8 +1,10 @@
-// @ts-check
 import { defineConfig, envField } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 import icon from "astro-icon";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // https://astro.build/config
 export default defineConfig({
@@ -44,6 +46,7 @@ export default defineConfig({
 				"@styles": "/src/styles",
 				"@utils": "/src/utils",
 				"@scripts": "/src/scripts",
+				"@fonts": "/public/fonts",
 			},
 		},
 	},
